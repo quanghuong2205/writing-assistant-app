@@ -1,27 +1,28 @@
 {
-  "name": "writing-assistant",
-  "version": "1.0.0",
-  "description": "writing assistant",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "quanghuong",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^1.7.2",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "html-to-text": "^9.0.5",
-    "jsonwebtoken": "^9.0.2",
-    "jwt-decode": "^4.0.0",
-    "mysql2": "^3.9.4",
-    "openai": "^4.47.3",
-    "puppeteer": "^22.10.0",
-    "sequelize": "^6.37.2",
-    "sqlite3": "^5.1.7",
-    "string-similarity": "^4.0.4"
-  }
+    "name": "writing-assistant",
+    "version": "1.0.0",
+    "description": "writing assistant",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "node server.js"
+    },
+    "author": "quanghuong",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^1.7.2",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "html-to-text": "^9.0.5",
+        "jsonwebtoken": "^9.0.2",
+        "jwt-decode": "^4.0.0",
+        "mysql2": "^3.9.4",
+        "openai": "^4.47.3",
+        "puppeteer": "^22.10.0",
+        "sequelize": "^6.37.2",
+        "sqlite3": "^5.1.7",
+        "string-similarity": "^4.0.4"
+    }
 }
