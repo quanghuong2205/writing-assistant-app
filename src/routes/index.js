@@ -6,13 +6,14 @@ const Router = express.Router();
 /* Define routes */
 Router.use('/api/auth', require('./auth.route'));
 
+Router.use('/api/assistant/fake', require('./fake.route'));
+
 const { verifyAuthV1 } = require('../middlewares/verify-auth.middlewar');
 const errorCatcher = require('../utils/error-catcher');
 
 Router.use(errorCatcher(verifyAuthV1));
 
 Router.use('/api/assistant', require('./assistant.route'));
-Router.use('/api/assistant/fake', require('./fake.route'));
 
 Router.get('/api/history', async (req, res, next) => {
     return res.status(200).json({
