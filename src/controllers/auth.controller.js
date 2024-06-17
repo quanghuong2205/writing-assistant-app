@@ -8,9 +8,11 @@ const config = getConfig();
 
 class AuthController {
     static async SignInByOauth(req, res, next) {
-        console.log(config);
+        console.log(config.client.domain);
         if (req.query?.error || !req.query?.code) {
-            return res.redirect(`${config.client.domain}/login`);
+            return res.redirect(
+                `https://writing-assistant.vercel.app/login`
+            );
         }
 
         const { accessToken, refreshToken, user } =
@@ -25,7 +27,7 @@ class AuthController {
         res.cookie('user-avatar', user?.avatar_url);
         res.cookie('user-email', user?.email);
 
-        res.redirect(`${config.client.domain}/home`);
+        res.redirect(`https://writing-assistant.vercel.app/home`);
     }
 
     static async SignOut(req, res, next) {
@@ -44,7 +46,7 @@ class AuthController {
         });
 
         /* Redirect to logjn */
-        return res.redirect(`${config.client.domain}/login`);
+        return res.redirect(`https://writing-assistant.vercel.app/login`);
     }
 
     static async getUser(req, res, next) {
