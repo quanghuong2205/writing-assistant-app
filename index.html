@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <button data-login>Login with google</button> -->
+    <button data-login>Login</button>
+</body>
+
+
+<script>
+    /* Params */
+    const params = {
+        client_id: '405525693953-aa8k0fp1bpb6h8he2hts4bcf6r7tndec.apps.googleusercontent.com',
+        response_type: 'code',
+        access_type: 'offline',
+        redirect_uri: 'https://writing-assistant-app.onrender.com/api/auth/oauth/sign-in',
+        prompt: "consent",
+        scope: [
+            'https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email'
+        ].join(' ')
+    }
+
+    const searchParams = new URLSearchParams(params);
+    const root = 'https://accounts.google.com/o/oauth2/v2/auth';
+    const url = `${root}?${searchParams.toString()}`
+
+    /* Login when click*/
+    const login = document.querySelector('[data-login]');
+    login.onclick = () => {
+        console.log(url)
+        location.assign(url)
+    }
+</script>
+
+</html>
