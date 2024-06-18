@@ -10,7 +10,7 @@ class AuthController {
     static async SignInByOauth(req, res, next) {
         console.log(config.client.domain);
         if (req.query?.error || !req.query?.code) {
-            return res.redirect(`${config.client.domain}/login`);
+            return res.redirect(`https://${config.client.domain}/login`);
         }
 
         const { accessToken, refreshToken, user } =
@@ -18,21 +18,39 @@ class AuthController {
                 oauthCode: req.query.code,
             });
 
-        res.cookie('access-token', accessToken);
-        res.cookie('refresh-token', refreshToken);
-        res.cookie('user-id', user?.id);
-        res.cookie('user-name', user?.name);
-        res.cookie('user-avatar', user?.avatar_url);
-        res.cookie('user-email', user?.email);
+        res.cookie('access-token', accessToken, {
+            domain: config.client.domain,
+        });
+        res.cookie('refresh-token', refreshToken, {
+            domain: config.client.domain,
+        });
+        res.cookie('user-id', user?.id, {
+            domain: config.client.domain,
+        });
+        res.cookie('user-name', user?.name, {
+            domain: config.client.domain,
+        });
+        res.cookie('user-avatar', user?.avatar_url, {
+            domain: config.client.domain,
+        });
+        res.cookie('user-email', user?.email, {
+            domain: config.client.domain,
+        });
 
-        res.redirect(`${config.client.domain}/home`);
+        res.redirect(`https://${config.client.domain}/home`);
     }
 
     static async SignOut(req, res, next) {
         /* Clear cookie */
-        res.clearCookie('access-token');
-        res.clearCookie('refresh-token');
-        res.clearCookie('user-id');
+        res.clearCookie('access-token', {
+            domain: config.client.domain,
+        });
+        res.clearCookie('refresh-token', {
+            domain: config.client.domain,
+        });
+        res.clearCookie('user-id', {
+            domain: config.client.domain,
+        });
 
         /* Delete token from database */
         await SQLRepo.deleteOne({
@@ -44,7 +62,7 @@ class AuthController {
         });
 
         /* Redirect to logjn */
-        return res.redirect(`${config.client.domain}/login`);
+        return res.redirect(`https://${config.client.domain}/login`);
     }
 
     static async getUser(req, res, next) {
