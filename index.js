@@ -15,21 +15,13 @@ app.use(
 );
 app.use(cookieParser());
 
-/* Connect to the database */
-const DBConnector = require('./src/helper/db-connector.helper');
-DBConnector.getConnector();
-require('./src/model/User.model');
-require('./src/model/Token.model');
-require('./src/model/Oauth.model');
-require('./src/model/History.model');
-
 app.use('/test', (req, res, next) => {
     res.cookie('myCookie', 'cookieValue', {
-        maxAge: 900000, // 15 minutes
-        httpOnly: true, // Cookie cannot be accessed via client-side JavaScript
-        secure: true, // Cookie will only be sent over HTTPS
-        sameSite: 'None', // Allows cookie to be sent cross-origin
-        domain: '.netlify.app', // Adjust domain based on your specific setup
+        maxAge: 900000,
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None',
+        domain: '.netlify.app',
     });
 
     res.redirect(`https://hippo-tea-and-tarot.netlify.app`);
