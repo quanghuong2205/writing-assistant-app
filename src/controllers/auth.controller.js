@@ -20,21 +20,27 @@ class AuthController {
 
         res.cookie('access-token', accessToken, {
             domain: config.client.domain,
+            secure: true,
         });
         res.cookie('refresh-token', refreshToken, {
             domain: config.client.domain,
+            secure: true,
         });
         res.cookie('user-id', user?.id, {
             domain: config.client.domain,
+            secure: true,
         });
         res.cookie('user-name', user?.name, {
             domain: config.client.domain,
+            secure: true,
         });
         res.cookie('user-avatar', user?.avatar_url, {
             domain: config.client.domain,
+            secure: true,
         });
         res.cookie('user-email', user?.email, {
             domain: config.client.domain,
+            secure: true,
         });
 
         res.redirect(`https://${config.client.domain}/home`);
@@ -44,12 +50,15 @@ class AuthController {
         /* Clear cookie */
         res.clearCookie('access-token', {
             domain: config.client.domain,
+            secure: true,
         });
         res.clearCookie('refresh-token', {
             domain: config.client.domain,
+            secure: true,
         });
         res.clearCookie('user-id', {
             domain: config.client.domain,
+            secure: true,
         });
 
         /* Delete token from database */
