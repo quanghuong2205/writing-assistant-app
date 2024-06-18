@@ -1,10 +1,20 @@
 'use strict';
 const express = require('express');
 const SQLRepo = require('../Repository');
+const User = require('../model/User.model');
 const Router = express.Router();
 
 /* Define routes */
 Router.use('/api/auth', require('./auth.route'));
+
+Router.use(async (req, res, next) => {
+    const user = await User.findOne({
+        order: [['updated_at', 'DESC']],
+    });
+
+    req.clientID = user?.id;
+    next();
+});
 
 Router.use('/api/assistant/fake', require('./fake.route'));
 
