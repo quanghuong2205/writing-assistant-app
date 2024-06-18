@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use('/test', (req, res, next) => {
     res.cookie('myCookie', 'cookieValue', {
         secure: true,
-        domain: '.test-flax-six-94.vercel.app',
+        domain: '.test-8zbplmaf7-quanghuong2205s-projects.vercel.app',
     });
 
     res.redirect(`https://test-flax-six-94.vercel.app`);
