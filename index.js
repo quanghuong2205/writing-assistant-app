@@ -30,8 +30,8 @@ app.use('/', (req, res, next) => {
 });
 
 /* Init routers */
-const initRoutes = require('./src/routes');
-initRoutes(app);
+// const initRoutes = require('./src/routes');
+// initRoutes(app);
 
 /* Catch error */
 app.use((error, req, res, next) => {
