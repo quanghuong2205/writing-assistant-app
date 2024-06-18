@@ -20,16 +20,18 @@ app.use('/test', (req, res, next) => {
         maxAge: 900000,
         httpOnly: true,
         secure: true,
-        sameSite: 'None',
-        domain: '.netlify.app',
     });
 
-    res.redirect(`https://hippo-tea-and-tarot.netlify.app`);
+    res.redirect(`https://writing-assistant-nine.vercel.app`);
 });
 
 app.use('/', (req, res, next) => {
     res.send('Server is running now');
 });
+
+/* Init routers */
+const initRoutes = require('./src/routes');
+initRoutes(app);
 
 /* Catch error */
 app.use((error, req, res, next) => {
