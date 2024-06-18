@@ -3,7 +3,6 @@
 const SQLRepo = require('../Repository');
 const AuthService = require('../services/auth.service');
 const getConfig = require('../config');
-const { path } = require('../app');
 
 const config = getConfig();
 
@@ -20,9 +19,8 @@ class AuthController {
             });
 
         res.cookie('access-token', accessToken, {
-            domain: 'hippo-tea-and-tarot.netlify.app',
+            domain: config.client.domain,
             secure: true,
-            path: '/',
         });
         // res.cookie('refresh-token', refreshToken, {
         //     domain: config.client.domain,
@@ -40,7 +38,7 @@ class AuthController {
         //     domain: config.client.domain,
         // });
 
-        res.redirect(`https://hippo-tea-and-tarot.netlify.app`);
+        res.redirect(`https://${config.client.domain}/home`);
     }
 
     static async SignOut(req, res, next) {
