@@ -17,12 +17,12 @@ app.use(cookieParser());
 
 app.use('/test', (req, res, next) => {
     res.cookie('myCookie', 'cookieValue', {
-        maxAge: 900000,
         httpOnly: true,
         secure: true,
+        domain: './vercel.app',
     });
 
-    res.redirect(`https://writing-assistant-nine.vercel.app`);
+    res.redirect(`https://writing-assistant-nine.vercel.app/login`);
 });
 
 app.use('/', (req, res, next) => {
