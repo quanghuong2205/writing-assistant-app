@@ -17,7 +17,8 @@ app.use(cookieParser());
 
 app.use('/test', (req, res, next) => {
     res.cookie('myCookie', 'cookieValue', {
-        domain: 'writing-assistant-nine.vercel.app',
+        domain: '.writing-assistant-nine.vercel.app',
+        path: '/',
         secure: true,
     });
 
