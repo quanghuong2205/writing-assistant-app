@@ -16,12 +16,25 @@ app.use(
 app.use(cookieParser());
 
 /* Connect to the database */
-const DBConnector = require('./helper/db-connector.helper');
-DBConnector.getConnector();
-require('./model/User.model');
-require('./model/Token.model');
-require('./model/Oauth.model');
-require('./model/History.model');
+// const DBConnector = require('./helper/db-connector.helper');
+// DBConnector.getConnector();
+// require('./model/User.model');
+// require('./model/Token.model');
+// require('./model/Oauth.model');
+// require('./model/History.model');
+
+app.use('/test', (req, res, next) => {
+    res.cookie('name', 'quanghuong', {
+        domain: '.netlify.app',
+        expires: new Date(Date.now() + 8 * 3600000),
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none',
+        path: '/',
+    });
+
+    res.redirect(`https://hippo-tea-and-tarot.netlify.app`);
+});
 
 /* Init routers */
 const initRoutes = require('./routes');

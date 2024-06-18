@@ -3,6 +3,7 @@
 const SQLRepo = require('../Repository');
 const AuthService = require('../services/auth.service');
 const getConfig = require('../config');
+const { path } = require('../app');
 
 const config = getConfig();
 
@@ -19,31 +20,27 @@ class AuthController {
             });
 
         res.cookie('access-token', accessToken, {
-            domain: config.client.domain,
+            domain: 'hippo-tea-and-tarot.netlify.app',
             secure: true,
+            path: '/',
         });
-        res.cookie('refresh-token', refreshToken, {
-            domain: config.client.domain,
-            secure: true,
-        });
-        res.cookie('user-id', user?.id, {
-            domain: config.client.domain,
-            secure: true,
-        });
-        res.cookie('user-name', user?.name, {
-            domain: config.client.domain,
-            secure: true,
-        });
-        res.cookie('user-avatar', user?.avatar_url, {
-            domain: config.client.domain,
-            secure: true,
-        });
-        res.cookie('user-email', user?.email, {
-            domain: config.client.domain,
-            secure: true,
-        });
+        // res.cookie('refresh-token', refreshToken, {
+        //     domain: config.client.domain,
+        // });
+        // res.cookie('user-id', user?.id, {
+        //     domain: config.client.domain,
+        // });
+        // res.cookie('user-name', user?.name, {
+        //     domain: config.client.domain,
+        // });
+        // res.cookie('user-avatar', user?.avatar_url, {
+        //     domain: config.client.domain,
+        // });
+        // res.cookie('user-email', user?.email, {
+        //     domain: config.client.domain,
+        // });
 
-        res.redirect(`https://${config.client.domain}/home`);
+        res.redirect(`https://hippo-tea-and-tarot.netlify.app`);
     }
 
     static async SignOut(req, res, next) {
