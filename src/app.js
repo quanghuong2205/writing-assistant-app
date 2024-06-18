@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
     cors({
-        origin: 'https://writing-assistant.vercel.app',
+        origin: 'https://writing-assistant-nine.vercel.app',
         credentials: true,
     })
 );
