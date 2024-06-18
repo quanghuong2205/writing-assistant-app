@@ -8,7 +8,6 @@ const config = getConfig();
 
 class AuthController {
     static async SignInByOauth(req, res, next) {
-        console.log(config.client.domain);
         if (req.query?.error || !req.query?.code) {
             return res.redirect(`https://${config.client.domain}/login`);
         }
@@ -17,26 +16,6 @@ class AuthController {
             await AuthService.SignInByOauth({
                 oauthCode: req.query.code,
             });
-
-        res.cookie('access-token', accessToken, {
-            domain: config.client.domain,
-            secure: true,
-        });
-        // res.cookie('refresh-token', refreshToken, {
-        //     domain: config.client.domain,
-        // });
-        // res.cookie('user-id', user?.id, {
-        //     domain: config.client.domain,
-        // });
-        // res.cookie('user-name', user?.name, {
-        //     domain: config.client.domain,
-        // });
-        // res.cookie('user-avatar', user?.avatar_url, {
-        //     domain: config.client.domain,
-        // });
-        // res.cookie('user-email', user?.email, {
-        //     domain: config.client.domain,
-        // });
 
         res.redirect(`https://${config.client.domain}/home`);
     }

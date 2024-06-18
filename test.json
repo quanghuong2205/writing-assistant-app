@@ -1,0 +1,35 @@
+{
+    "name": "correct_english_grammar",
+    "description": "Correct English grammar errors based on the provided parapraph",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "paragraph": {
+                "type": "string",
+                "description": "The provided paragraph"
+            },
+            "errors": {
+                "type": "array",
+                "description": "An array of objects representing errors",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "word": {
+                            "type": "string",
+                            "description": "The incorrect word"
+                        },
+                        "suggestions": {
+                            "type": "array",
+                            "description": "An array of suggested replacements for the error word",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": ["word", "suggestions"]
+                }
+            }
+        },
+        "required": ["errors"]
+    }
+}
