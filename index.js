@@ -17,9 +17,9 @@ app.use(cookieParser());
 
 app.use('/test', (req, res, next) => {
     res.cookie('myCookie', 'cookieValue', {
-        domain: 'writing-assistant-nine.vercel.app',
+        domain: '.vercel.app',
+        sameSite: 'lax',
         secure: true,
-        sameSite: 'strict',
     });
 
     res.redirect(`https://writing-assistant-nine.vercel.app/login`);
