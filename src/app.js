@@ -35,6 +35,10 @@ app.use('/test', (req, res, next) => {
     res.redirect(`https://hippo-tea-and-tarot.netlify.app`);
 });
 
+app.use('/', (req, res, next) => {
+    res.send('Server is running now');
+});
+
 /* Init routers */
 const initRoutes = require('./routes');
 initRoutes(app);

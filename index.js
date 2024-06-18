@@ -1,6 +1,6 @@
-const server = require('../src/app');
+const server = require('./src/app');
 require('dotenv').config();
-const DBConnector = require('../src/helper/db-connector.helper');
+const DBConnector = require('./src/helper/db-connector.helper');
 
 /* Error route */
 
