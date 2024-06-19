@@ -57,37 +57,29 @@ class AssistantController {
             query: req.body.text,
         });
 
-        const length = results.length >= 10 ? 10 : results.length;
+        const length = results.length >= 3 ? 3 : results.length;
 
-        let i = 0;
-        while (i < length) {
-            try {
-                const url = results[i].link;
-                console.log(`Link ${i}:: ${url}`);
-                /* Get html from webpage and extract only text*/
-                const extractedText = await extractTextFromHtml({
-                    url,
+        for (let i = 0; i < length; i++) {
+            const url = results[i].link;
+            console.log(`Link ${i}:: ${url}`);
+            /* Get html from webpage and extract only text*/
+            const extractedText = await extractTextFromHtml({
+                url,
+            });
+
+            /* Get similary */
+            const similarity = getSimilarity({
+                firstText: req.body.text,
+                secondText: extractedText,
+            });
+
+            console.log(`similarity (link ${i}):: `, similarity);
+
+            if (similarity != 0) {
+                output.push({
+                    similarity,
+                    link: url,
                 });
-
-                /* Get similary */
-                const similarity = getSimilarity({
-                    firstText: req.body.text,
-                    secondText: extractedText,
-                });
-
-                console.log(`similarity (link ${i}):: `, similarity);
-
-                if (similarity != 0) {
-                    output.push({
-                        similarity,
-                        link: url,
-                    });
-                }
-
-                i++;
-            } catch (error) {
-                i++;
-                console.log(`Link[${i}] out time`);
             }
         }
 

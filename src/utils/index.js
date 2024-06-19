@@ -26,7 +26,7 @@ const extractTextFromHtml = async ({ url }) => {
 
     const page = await browser.newPage();
     await page.goto(url, {
-        timeout: 30000,
+        timeout: 60000 * 3,
     });
 
     const extractedText = await page.$eval('*', (el) => el.innerText);
