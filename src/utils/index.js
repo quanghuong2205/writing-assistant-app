@@ -33,11 +33,11 @@ const extractTextFromHtml = async ({ url }) => {
         const extractedText = await page.$eval('*', (el) => el.innerText);
 
         await browser.close();
+
+        return extractedText;
     } catch (error) {
         console.log('Out time');
     }
-
-    return extractedText;
 };
 
 const getSimilarity = ({ firstText, secondText }) => {
