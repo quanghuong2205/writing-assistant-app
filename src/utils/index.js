@@ -23,10 +23,10 @@ const extractTextFromHtml = async ({ url }) => {
             '--single-process',
         ],
     });
+
     const page = await browser.newPage();
     await page.goto(url, {
         timeout: 300000,
-        waitUntil: 'domcontentloaded',
     });
 
     const extractedText = await page.$eval('*', (el) => el.innerText);
@@ -41,8 +41,6 @@ const getSimilarity = ({ firstText, secondText }) => {
         firstText,
         secondText
     );
-
-    console.log('simi::', similarity);
 
     return similarity * 100;
 };
