@@ -57,7 +57,7 @@ class AssistantController {
             query: req.body.text,
         });
 
-        const length = results.length >= 3 ? 3 : results.length;
+        const length = results.length >= 10 ? 10 : results.length;
 
         let i = 0;
         while (i < length) {
