@@ -13,25 +13,29 @@ const isExpired = ({ expireIn }) => {
 };
 
 const extractTextFromHtml = async ({ url }) => {
-    const browser = await puppeteer.launch({
-        headless: true,
-        ignoreHTTPSErrors: true,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage',
-            '--single-process',
-        ],
-    });
+    try {
+        const browser = await puppeteer.launch({
+            headless: true,
+            ignoreHTTPSErrors: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--single-process',
+            ],
+        });
 
-    const page = await browser.newPage();
-    await page.goto(url, {
-        timeout: 60000 * 3,
-    });
+        const page = await browser.newPage();
+        await page.goto(url, {
+            timeout: 60000 * 3,
+        });
 
-    const extractedText = await page.$eval('*', (el) => el.innerText);
+        const extractedText = await page.$eval('*', (el) => el.innerText);
 
-    await browser.close();
+        await browser.close();
+    } catch (error) {
+        console.log('Out time');
+    }
 
     return extractedText;
 };
