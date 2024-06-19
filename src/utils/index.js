@@ -23,10 +23,12 @@ const extractTextFromHtml = async ({ url }) => {
             '--single-process',
         ],
     });
-    const page = (await browser.pages())[0];
+    const page = await browser.newPage();
     await page.goto(url, {
-        timeout: 180000,
+        timeout: 300000,
+        waitUntil: 'domcontentloaded',
     });
+
     const extractedText = await page.$eval('*', (el) => el.innerText);
 
     await browser.close();
