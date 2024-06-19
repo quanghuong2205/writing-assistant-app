@@ -57,7 +57,7 @@ class AssistantController {
             query: req.body.text,
         });
 
-        const length = results.length >= 3 ? 3 : results.length;
+        const length = results.length >= 2 ? 2 : results.length;
 
         for (let i = 0; i < length; i++) {
             const url = results[i].link;
